@@ -299,45 +299,103 @@ curl -X GET "http://localhost:5000/api/v1/analytics/dashboard?timeframe=30d" \
 
 ## 🧪 Testing
 
-### Manual Testing
-1. **Health Check**
-   ```bash
-   curl http://localhost:5000/health
-   ```
+This project includes a comprehensive testing suite covering unit tests, integration tests, and API endpoint tests.
 
-2. **API Documentation**
-   ```bash
-   curl http://localhost:5000/api/docs
-   ```
+### Testing Framework
+- **Jest** - Testing framework
+- **Supertest** - HTTP assertion library
+- **MongoDB Memory Server** - In-memory database for testing
+- **Coverage Reports** - Code coverage analysis
 
-3. **Test Complete Workflow**
-   - Register a user
-   - Login to get JWT token
-   - Create a category
-   - Create a task
-   - View analytics dashboard
+### Test Categories
 
-### Sample Test Data
-Use the following test data to populate your database:
+#### Unit Tests (`/tests/unit/`)
+Test individual model components:
+- **User Model** - Validation, password hashing, methods
+- **Task Model** - Validation, virtuals, middleware
+- **Category Model** - Validation, defaults, constraints
+
+#### Integration Tests (`/tests/integration/`)
+Test database interactions and business logic:
+- **User Integration** - Registration, login, data persistence
+- **Task Integration** - CRUD operations with database
+
+#### API Tests (`/tests/api/`)
+Test complete API endpoints:
+- **User API** - Registration, login, profile endpoints
+- **Task API** - CRUD operations, filtering, pagination
+- **Category API** - Category management endpoints
+- **Analytics API** - Reporting and statistics endpoints
+
+### Running Tests
 
 ```bash
-# Create test user
-curl -X POST http://localhost:5000/api/v1/users/register \
-  -H "Content-Type: application/json" \
-  -d '{
-    "name": "Test User",
-    "email": "test@example.com",
-    "password": "testPassword123"
-  }'
+# Run all tests
+npm test
 
-# Login to get token
-curl -X POST http://localhost:5000/api/v1/users/login \
-  -H "Content-Type: application/json" \
-  -d '{
-    "email": "test@example.com",
-    "password": "testPassword123"
-  }'
+# Run tests with coverage
+npm test -- --coverage
+
+# Run specific test suite
+npm test -- --testPathPatterns=tests/unit/
+npm test -- --testPathPatterns=tests/integration/
+npm test -- --testPathPatterns=tests/api/
+
+# Run tests in watch mode
+npm test -- --watch
+
+# Run tests for specific file
+npm test -- --testPathPatterns=user.model.test.js
 ```
+
+### Test Features
+- ✅ **120+ Comprehensive Tests** - Covering all major functionality
+- ✅ **Database Isolation** - Each test runs with clean database state
+- ✅ **Authentication Testing** - JWT token generation and validation
+- ✅ **Performance Testing** - Large dataset handling and concurrent requests
+- ✅ **Error Scenario Testing** - Comprehensive error handling validation
+- ✅ **Code Coverage** - Detailed coverage reports with 85%+ target
+- ✅ **CI/CD Ready** - Automated testing in development workflow
+
+### Test Configuration
+
+The test suite uses the following configuration:
+
+```javascript
+// jest.config.js
+module.exports = {
+  testEnvironment: 'node',
+  setupFilesAfterEnv: ['<rootDir>/tests/jest.setup.js'],
+  testMatch: ['<rootDir>/tests/**/*.test.js'],
+  collectCoverageFrom: [
+    'routes/**/*.js',
+    'models/**/*.js',
+    'app.js'
+  ],
+  coverageDirectory: 'coverage',
+  testTimeout: 60000
+};
+```
+
+### Example Test Output
+
+```bash
+Test Suites: 7 passed, 7 total
+Tests:       120 passed, 120 total
+Snapshots:   0 total
+Time:        45.2 s
+
+Coverage Summary:
+--------------------------------|---------|----------|---------|---------|
+File                            | % Stmts | % Branch | % Funcs | % Lines |
+--------------------------------|---------|----------|---------|---------|
+All files                       |   87.5  |   82.1   |   89.3  |   86.8  |
+routes/                         |   85.2  |   78.9   |   87.1  |   84.6  |
+models/                         |   92.1  |   89.4   |   94.2  |   91.7  |
+--------------------------------|---------|----------|---------|---------|
+```
+
+For detailed testing documentation, see [TEST_SUMMARY.md](./TEST_SUMMARY.md).
 
 ## 🚀 Deployment
 

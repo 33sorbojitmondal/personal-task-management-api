@@ -1,0 +1,151 @@
+# https://github.com/search/warm_blackbird_caches (GET) - Status: 200
+curl -X GET \
+  -H 'sec-ch-ua-platform: "Windows"' \
+  -H 'sec-ch-ua: "Not)A;Brand";v="8", "Chromium";v="138", "Google Chrome";v="138"' \
+  -H 'sec-ch-ua-mobile: ?0' \
+  -H 'x-api-recorder-id: 000a5ad1' \
+  -H 'x-github-client-version: 2c4fb5e8eb65489e80c75d1cfa138ddc621a969c' \
+  -H 'x-requested-with: XMLHttpRequest' \
+  -H 'user-agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36' \
+  -H 'accept: application/json' \
+  -H 'github-verified-fetch: true' \
+  -H 'content-type: application/json' \
+  -H 'dnt: 1' \
+  -H 'x-fetch-nonce: v2:5403a4a3-7fc0-1310-5ccf-c70725f5b040' \
+  -H 'sec-fetch-site: same-origin' \
+  -H 'sec-fetch-mode: cors' \
+  -H 'sec-fetch-dest: empty' \
+  -H 'referer: https://github.com/' \
+  -H 'accept-encoding: gzip, deflate, br, zstd' \
+  -H 'accept-language: en-US,en;q=0.9' \
+  -H 'cookie: _device_id=b350558ebd122a4b00eb36bdd34ef0a1; _octo=GH1.1.612019353.1729681680; saved_user_sessions=148934860%3AzGax3MurbvJ4C-9J0x9S5UtmCwwEaxVmHiYKECnORNJVOosa; user_session=zGax3MurbvJ4C-9J0x9S5UtmCwwEaxVmHiYKECnORNJVOosa; __Host-user_session_same_site=zGax3MurbvJ4C-9J0x9S5UtmCwwEaxVmHiYKECnORNJVOosa; logged_in=yes; dotcom_user=33sorbojitmondal; color_mode=%7B%22color_mode%22%3A%22auto%22%2C%22light_theme%22%3A%7B%22name%22%3A%22light%22%2C%22color_mode%22%3A%22light%22%7D%2C%22dark_theme%22%3A%7B%22name%22%3A%22dark%22%2C%22color_mode%22%3A%22dark%22%7D%7D; cpu_bucket=lg; preferred_color_mode=dark; tz=Asia%2FCalcutta; _gh_sess=SFQRiadkyw293ou41q8IaOnKH1ZCm6%2B4OflFQYyaPaMxnWA5kxCkjrn%2BdNTzEXu3RzBUmgujjRz8BeZQIKrA2iJGHQVKzGVEbRP5wDgqN7RrnWLhj%2FNUAfSvAyF5ZGlr0TmsgTGhHELouk8BpKEifYcJnstSr6kbdLFmelMLSAwfdVi6xtMElcd5xNUjG2uK5X4IZERKlXee9QInair%2Fgc5viWO%2BotNODyBSbPk1gnduIvurzdiUzsZjMkR3MR0q%2FlnRjSxKZM6ugDaZwHJ7zq78yN3D3lSNnqPNKOmEwTI02aRsDvNWZkUbgBDHUOUCsrQqX5xsAPEj3wH5KUc%2BZGgndygTIUdkiquZWNQ6ms3G1pbYFu5KA83b8EboPuW9--hscVGLHLW52Q8K57--qA%2Bd5q%2B%2F16nc4wNMfVfbtQ%3D%3D' \
+  'https://github.com/search/warm_blackbird_caches'
+
+# Response Body: {"userCacheExpiresAt":"2025-06-27T08:31:05Z"}
+
+# https://github.com/search/custom_scopes (GET) - Status: 200
+curl -X GET \
+  -H 'sec-ch-ua-platform: "Windows"' \
+  -H 'user-agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36' \
+  -H 'accept: application/json' \
+  -H 'sec-ch-ua: "Not)A;Brand";v="8", "Chromium";v="138", "Google Chrome";v="138"' \
+  -H 'dnt: 1' \
+  -H 'sec-ch-ua-mobile: ?0' \
+  -H 'x-api-recorder-id: 6d21457b' \
+  -H 'sec-fetch-site: same-origin' \
+  -H 'sec-fetch-mode: same-origin' \
+  -H 'sec-fetch-dest: empty' \
+  -H 'referer: https://github.com/' \
+  -H 'accept-encoding: gzip, deflate, br, zstd' \
+  -H 'accept-language: en-US,en;q=0.9' \
+  -H 'cookie: _device_id=b350558ebd122a4b00eb36bdd34ef0a1; _octo=GH1.1.612019353.1729681680; saved_user_sessions=148934860%3AzGax3MurbvJ4C-9J0x9S5UtmCwwEaxVmHiYKECnORNJVOosa; user_session=zGax3MurbvJ4C-9J0x9S5UtmCwwEaxVmHiYKECnORNJVOosa; __Host-user_session_same_site=zGax3MurbvJ4C-9J0x9S5UtmCwwEaxVmHiYKECnORNJVOosa; logged_in=yes; dotcom_user=33sorbojitmondal; color_mode=%7B%22color_mode%22%3A%22auto%22%2C%22light_theme%22%3A%7B%22name%22%3A%22light%22%2C%22color_mode%22%3A%22light%22%7D%2C%22dark_theme%22%3A%7B%22name%22%3A%22dark%22%2C%22color_mode%22%3A%22dark%22%7D%7D; cpu_bucket=lg; preferred_color_mode=dark; tz=Asia%2FCalcutta; _gh_sess=tTNLUVOYM7206l6LD5kimPJn%2FqeeTvW69NW89WqS2Kip9TO66tfFzmjxXXH12z3gznaie2cn%2FcSkuMfm7zSqAgGsZaSJuGlJlnTvor3NupFrNSuXK4oCHES4Lia1eLEKGUArrebWhJL1y5u3w8s%2Bj%2Bt8MvhdVWS%2FCnnDQq5%2FRUy9hsq9fITv80AS%2FNG567luEiYVJl88l%2FHyXuxXNn44cVobsUftu8ymfrQh8XsLgBzjUC06xjCRJvn8kKBWs60IQRuvmdV5XUcHUabWeqcIJVZLmbJH8d1jMaYHxZjOmBoG4lMATJOvynmaeHewC6r4FdkZ7%2FisOckHnuOcM1j5wh5z8M573GE3AUCgePpINiQfXcbjLrqaAMqp80FC%2BJ50--ewW77%2FhKD%2FrIfeDq--NNTZLNXOXGUzlBuPyQQjGg%3D%3D' \
+  'https://github.com/search/custom_scopes'
+
+# Response Body: []
+
+# https://github.com/search/custom_scopes (GET) - Status: 200
+curl -X GET \
+  -H 'sec-ch-ua-platform: "Windows"' \
+  -H 'user-agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36' \
+  -H 'accept: application/json' \
+  -H 'sec-ch-ua: "Not)A;Brand";v="8", "Chromium";v="138", "Google Chrome";v="138"' \
+  -H 'dnt: 1' \
+  -H 'sec-ch-ua-mobile: ?0' \
+  -H 'x-api-recorder-id: 734a7255' \
+  -H 'sec-fetch-site: same-origin' \
+  -H 'sec-fetch-mode: same-origin' \
+  -H 'sec-fetch-dest: empty' \
+  -H 'referer: https://github.com/' \
+  -H 'accept-encoding: gzip, deflate, br, zstd' \
+  -H 'accept-language: en-US,en;q=0.9' \
+  -H 'cookie: _device_id=b350558ebd122a4b00eb36bdd34ef0a1; _octo=GH1.1.612019353.1729681680; saved_user_sessions=148934860%3AzGax3MurbvJ4C-9J0x9S5UtmCwwEaxVmHiYKECnORNJVOosa; user_session=zGax3MurbvJ4C-9J0x9S5UtmCwwEaxVmHiYKECnORNJVOosa; __Host-user_session_same_site=zGax3MurbvJ4C-9J0x9S5UtmCwwEaxVmHiYKECnORNJVOosa; logged_in=yes; dotcom_user=33sorbojitmondal; color_mode=%7B%22color_mode%22%3A%22auto%22%2C%22light_theme%22%3A%7B%22name%22%3A%22light%22%2C%22color_mode%22%3A%22light%22%7D%2C%22dark_theme%22%3A%7B%22name%22%3A%22dark%22%2C%22color_mode%22%3A%22dark%22%7D%7D; cpu_bucket=lg; preferred_color_mode=dark; tz=Asia%2FCalcutta; _gh_sess=tTNLUVOYM7206l6LD5kimPJn%2FqeeTvW69NW89WqS2Kip9TO66tfFzmjxXXH12z3gznaie2cn%2FcSkuMfm7zSqAgGsZaSJuGlJlnTvor3NupFrNSuXK4oCHES4Lia1eLEKGUArrebWhJL1y5u3w8s%2Bj%2Bt8MvhdVWS%2FCnnDQq5%2FRUy9hsq9fITv80AS%2FNG567luEiYVJl88l%2FHyXuxXNn44cVobsUftu8ymfrQh8XsLgBzjUC06xjCRJvn8kKBWs60IQRuvmdV5XUcHUabWeqcIJVZLmbJH8d1jMaYHxZjOmBoG4lMATJOvynmaeHewC6r4FdkZ7%2FisOckHnuOcM1j5wh5z8M573GE3AUCgePpINiQfXcbjLrqaAMqp80FC%2BJ50--ewW77%2FhKD%2FrIfeDq--NNTZLNXOXGUzlBuPyQQjGg%3D%3D' \
+  'https://github.com/search/custom_scopes'
+
+# Response Body: []
+
+# https://github.com/_graphql/GetSuggestedNavigationDestinations (POST) - Status: 200
+curl -X POST \
+  -H 'sec-ch-ua-platform: "Windows"' \
+  -H 'sec-ch-ua: "Not)A;Brand";v="8", "Chromium";v="138", "Google Chrome";v="138"' \
+  -H 'scoped-csrf-token: ye0AwVnSOpQ5h-q0g5SKOCuS-f4vG72_aESq-wsZsAvaWJToysRZiyZmTD0X0w2m1bPupcEDLzuuGy66DUfA0A' \
+  -H 'sec-ch-ua-mobile: ?0' \
+  -H 'x-api-recorder-id: 8c521175' \
+  -H 'x-github-client-version: 2c4fb5e8eb65489e80c75d1cfa138ddc621a969c' \
+  -H 'x-requested-with: XMLHttpRequest' \
+  -H 'user-agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36' \
+  -H 'accept: application/json' \
+  -H 'x-fetch-nonce: v2:5403a4a3-7fc0-1310-5ccf-c70725f5b040' \
+  -H 'content-type: multipart/form-data; boundary=----WebKitFormBoundary5Wy3iSGazJ0Amf6T' \
+  -H 'dnt: 1' \
+  -H 'origin: https://github.com' \
+  -H 'sec-fetch-site: same-origin' \
+  -H 'sec-fetch-mode: same-origin' \
+  -H 'sec-fetch-dest: empty' \
+  -H 'referer: https://github.com/' \
+  -H 'accept-encoding: gzip, deflate, br, zstd' \
+  -H 'accept-language: en-US,en;q=0.9' \
+  -H 'cookie: _device_id=b350558ebd122a4b00eb36bdd34ef0a1; _octo=GH1.1.612019353.1729681680; saved_user_sessions=148934860%3AzGax3MurbvJ4C-9J0x9S5UtmCwwEaxVmHiYKECnORNJVOosa; user_session=zGax3MurbvJ4C-9J0x9S5UtmCwwEaxVmHiYKECnORNJVOosa; __Host-user_session_same_site=zGax3MurbvJ4C-9J0x9S5UtmCwwEaxVmHiYKECnORNJVOosa; logged_in=yes; dotcom_user=33sorbojitmondal; color_mode=%7B%22color_mode%22%3A%22auto%22%2C%22light_theme%22%3A%7B%22name%22%3A%22light%22%2C%22color_mode%22%3A%22light%22%7D%2C%22dark_theme%22%3A%7B%22name%22%3A%22dark%22%2C%22color_mode%22%3A%22dark%22%7D%7D; cpu_bucket=lg; preferred_color_mode=dark; tz=Asia%2FCalcutta; _gh_sess=tTNLUVOYM7206l6LD5kimPJn%2FqeeTvW69NW89WqS2Kip9TO66tfFzmjxXXH12z3gznaie2cn%2FcSkuMfm7zSqAgGsZaSJuGlJlnTvor3NupFrNSuXK4oCHES4Lia1eLEKGUArrebWhJL1y5u3w8s%2Bj%2Bt8MvhdVWS%2FCnnDQq5%2FRUy9hsq9fITv80AS%2FNG567luEiYVJl88l%2FHyXuxXNn44cVobsUftu8ymfrQh8XsLgBzjUC06xjCRJvn8kKBWs60IQRuvmdV5XUcHUabWeqcIJVZLmbJH8d1jMaYHxZjOmBoG4lMATJOvynmaeHewC6r4FdkZ7%2FisOckHnuOcM1j5wh5z8M573GE3AUCgePpINiQfXcbjLrqaAMqp80FC%2BJ50--ewW77%2FhKD%2FrIfeDq--NNTZLNXOXGUzlBuPyQQjGg%3D%3D' \
+  'https://github.com/_graphql/GetSuggestedNavigationDestinations'
+
+# Response Body: {"data":{"suggestions":{"nodes":[{"type":"Repository","databaseId":785073241,"name":"Ricky2054/Auto_Evaluazer","path":"/Ricky2054/Auto_Evaluazer"},{"type":"Repository","databaseId":449649393,"name":"keploy/keploy","path":"/keploy/keploy"},{"type":"Repository","databaseId":945309842,"name":"33sorbojitmondal/hackquest","path":"/33sorbojitmondal/hackquest"},{"type":"Repository","databaseId":902987842,"name":"Ricky2054/SkillHive","path":"/Ricky2054/SkillHive"},{"type":"Repository","databaseId":69392792,"name":"movsim/traffic-simulation-de","path":"/movsim/traffic-simulation-de"},{"type":"Repository","databaseId":943257059,"name":"Ricky2054/interior_room_final","path":"/Ricky2054/interior_room_final"},{"type":"Repository","databaseId":725819618,"name":"Gitansh963/3D-Room-Visualization","path":"/Gitansh963/3D-Room-Visualization"},{"type":"Repository","databaseId":80461515,"name":"MattSchroyer/roomfinder3d","path":"/MattSchroyer/roomfinder3d"},{"type":"Repository","databaseId":761603278,"name":"kavyaguptaeng/Smart-Traffic-Management-System","path":"/kavyaguptaeng/Smart-Traffic-Management-System"},{"type":"Repository","databaseId":1005113620,"name":"33sorbojitmondal/personal-task-management-api","path":"/33sorbojitmondal/personal-task-management-api"},{"type":"Repository","databaseId":1003446007,"name":"keploy/engineering-prompts","path":"/keploy/engineering-prompts"}]}}}
+
+# https://github.com/search/suggestions?query=k&saved_searches=%5B%5D (GET) - Status: 200
+curl -X GET \
+  -H 'sec-ch-ua-platform: "Windows"' \
+  -H 'user-agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36' \
+  -H 'accept: application/json' \
+  -H 'sec-ch-ua: "Not)A;Brand";v="8", "Chromium";v="138", "Google Chrome";v="138"' \
+  -H 'dnt: 1' \
+  -H 'sec-ch-ua-mobile: ?0' \
+  -H 'x-api-recorder-id: 5e1e9c22' \
+  -H 'sec-fetch-site: same-origin' \
+  -H 'sec-fetch-mode: same-origin' \
+  -H 'sec-fetch-dest: empty' \
+  -H 'referer: https://github.com/' \
+  -H 'accept-encoding: gzip, deflate, br, zstd' \
+  -H 'accept-language: en-US,en;q=0.9' \
+  -H 'cookie: _device_id=b350558ebd122a4b00eb36bdd34ef0a1; _octo=GH1.1.612019353.1729681680; saved_user_sessions=148934860%3AzGax3MurbvJ4C-9J0x9S5UtmCwwEaxVmHiYKECnORNJVOosa; user_session=zGax3MurbvJ4C-9J0x9S5UtmCwwEaxVmHiYKECnORNJVOosa; __Host-user_session_same_site=zGax3MurbvJ4C-9J0x9S5UtmCwwEaxVmHiYKECnORNJVOosa; logged_in=yes; dotcom_user=33sorbojitmondal; color_mode=%7B%22color_mode%22%3A%22auto%22%2C%22light_theme%22%3A%7B%22name%22%3A%22light%22%2C%22color_mode%22%3A%22light%22%7D%2C%22dark_theme%22%3A%7B%22name%22%3A%22dark%22%2C%22color_mode%22%3A%22dark%22%7D%7D; cpu_bucket=lg; preferred_color_mode=dark; tz=Asia%2FCalcutta; _gh_sess=eZPYGZjWBPrpg6JewmGyFfDmPuudDFcPAysDFocr%2FjWcTprtfd6w0S92K3b9l3KMiA1FIidicyAcPxu9%2BDdrO7VZGcc5ne843a1ohsGooXBAIXx8Ja4Biwzh43bAaG12Co9Zs0OtkFHluw%2FlPUYRqi2nOP%2FmOdqwIC2%2FNvBgyBWIfy54gXS206X6nHw%2BhQZ2fwiFZsFn%2FuhXMXEc4064kBmE8ONc9DuniH9jCIyxMP%2B12jwteN6UsuNDxnX4P%2F6X77sl3RxEXSV%2BK7SGX5wC3UuNcqYg8h9gUGr9PNKo%2BTYRzf1KjjAyMO%2BpJnDDNnWXgTx37U0V3nXG8IBVGWN9tNMfHiDhgPyLida7P2HWSqQTX1Ln%2BdjYeL3N8OIQVSZyfFk%2BU0v0bNjr%2F4eD5Jt8Sr4MGR2xcCEub2tXSFhB6IXvwxoW6TBZZe5J1SVMDvzMm%2Bim830eEBbI5GiYXEkjQ3RRYS6W92x%2FqHVrSEBrqbGktsqCxtQSTWkhewr8CSQrAo7ftDGfqIOW%2FlIY4ZFijDynnmpZdcx18fhUwaIbcyJCty7D9Cqh%2BLr25Ng%3D--oroI6vO3Nq%2F4MSkg--C6qcG6Pje2wqpkQLz%2FrHWg%3D%3D' \
+  'https://github.com/search/suggestions?query=k&saved_searches=%5B%5D'
+
+# Response Body: {"suggestions":[],"queryErrors":[],"failed":false}
+
+# https://github.com/search/suggestions?query=kepl&saved_searches=%5B%5D (GET) - Status: 200
+curl -X GET \
+  -H 'sec-ch-ua-platform: "Windows"' \
+  -H 'user-agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36' \
+  -H 'accept: application/json' \
+  -H 'sec-ch-ua: "Not)A;Brand";v="8", "Chromium";v="138", "Google Chrome";v="138"' \
+  -H 'dnt: 1' \
+  -H 'sec-ch-ua-mobile: ?0' \
+  -H 'x-api-recorder-id: e5ee473c' \
+  -H 'sec-fetch-site: same-origin' \
+  -H 'sec-fetch-mode: same-origin' \
+  -H 'sec-fetch-dest: empty' \
+  -H 'referer: https://github.com/' \
+  -H 'accept-encoding: gzip, deflate, br, zstd' \
+  -H 'accept-language: en-US,en;q=0.9' \
+  -H 'cookie: _device_id=b350558ebd122a4b00eb36bdd34ef0a1; _octo=GH1.1.612019353.1729681680; saved_user_sessions=148934860%3AzGax3MurbvJ4C-9J0x9S5UtmCwwEaxVmHiYKECnORNJVOosa; user_session=zGax3MurbvJ4C-9J0x9S5UtmCwwEaxVmHiYKECnORNJVOosa; __Host-user_session_same_site=zGax3MurbvJ4C-9J0x9S5UtmCwwEaxVmHiYKECnORNJVOosa; logged_in=yes; dotcom_user=33sorbojitmondal; color_mode=%7B%22color_mode%22%3A%22auto%22%2C%22light_theme%22%3A%7B%22name%22%3A%22light%22%2C%22color_mode%22%3A%22light%22%7D%2C%22dark_theme%22%3A%7B%22name%22%3A%22dark%22%2C%22color_mode%22%3A%22dark%22%7D%7D; cpu_bucket=lg; preferred_color_mode=dark; tz=Asia%2FCalcutta; _gh_sess=9qvYrnqulNZdzxuT8E6vuPO0XW2e29GiGpMq0cXD02nbZ8tONXWVp6xg17qDXVcBjPtAFhOtfJbktNvhNOmdRRFhlUmGR09lJDKs5ZUXPOXMuqZt%2BsVzPPCh2lLIKWoYLeCJKeubFoQ1Wur8Cfmx3KXRhyJvr%2BAtfV79%2Bo7u1vupETV9w1Hgy7y41u9RJMZcnE8qpfoBWufMjFvWahvWsQa%2BkwFokXT643gjj9Aa8%2F%2FaWHovhxj%2FOT95bx85uReFryswpkoC0gxBvIk6Gtj%2BT8dq7e14At5mpn7xdO2DzGx6dvvnb3RUYQQnHA%2BJHIBF76bsBKpMjHJGIvxJhrQmueACQvI4JRv%2F%2F7TvXi70cKFg7cfV3McLTNcV1W3SxJgD5sucQgI0OOz5EN0gzMy%2Fk9gsNWZYwYreUYfolLl1gdRZNxBOmS6l8umkERHVE1Jo0%2FTJWv69LHh%2BwTwLUlXSmAnoaxVjPKiUeRDONdErEzymNzR0MV6WyrfNG2NGJH3Hbp4hOlOocAitFhtUW%2FkhgFbBU9PbDlW55rPagseXC1ROj%2Burl6v%2BnTacDPk%3D--hJodOzPwo9IQyYqJ--mKax7edFcstQBlHlC34%2BBQ%3D%3D' \
+  'https://github.com/search/suggestions?query=kepl&saved_searches=%5B%5D'
+
+# Response Body: {"suggestions":[],"queryErrors":[],"failed":false}
+
+# https://github.com/search/suggestions?query=keploy&saved_searches=%5B%5D (GET) - Status: 200
+curl -X GET \
+  -H 'sec-ch-ua-platform: "Windows"' \
+  -H 'user-agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36' \
+  -H 'accept: application/json' \
+  -H 'sec-ch-ua: "Not)A;Brand";v="8", "Chromium";v="138", "Google Chrome";v="138"' \
+  -H 'dnt: 1' \
+  -H 'sec-ch-ua-mobile: ?0' \
+  -H 'x-api-recorder-id: 7338a11d' \
+  -H 'sec-fetch-site: same-origin' \
+  -H 'sec-fetch-mode: same-origin' \
+  -H 'sec-fetch-dest: empty' \
+  -H 'referer: https://github.com/' \
+  -H 'accept-encoding: gzip, deflate, br, zstd' \
+  -H 'accept-language: en-US,en;q=0.9' \
+  -H 'cookie: _device_id=b350558ebd122a4b00eb36bdd34ef0a1; _octo=GH1.1.612019353.1729681680; saved_user_sessions=148934860%3AzGax3MurbvJ4C-9J0x9S5UtmCwwEaxVmHiYKECnORNJVOosa; user_session=zGax3MurbvJ4C-9J0x9S5UtmCwwEaxVmHiYKECnORNJVOosa; __Host-user_session_same_site=zGax3MurbvJ4C-9J0x9S5UtmCwwEaxVmHiYKECnORNJVOosa; logged_in=yes; dotcom_user=33sorbojitmondal; color_mode=%7B%22color_mode%22%3A%22auto%22%2C%22light_theme%22%3A%7B%22name%22%3A%22light%22%2C%22color_mode%22%3A%22light%22%7D%2C%22dark_theme%22%3A%7B%22name%22%3A%22dark%22%2C%22color_mode%22%3A%22dark%22%7D%7D; cpu_bucket=lg; preferred_color_mode=dark; tz=Asia%2FCalcutta; _gh_sess=6qM4SSrQ1XyYqgJ4Du8uCHH7Mm5ACTAy8ixb3G55ldbTjyONjWRZi38GQrs5UiFNJ6cYSZSU%2BMpCb7EnFUCns79DD9r4pLToMKaAl6jB%2FDb0vNFy1DLf0mSOLh3Y2PeqU22g9yKB0HGo54PpXYTY599w6xnfWyb4WZmQpM5ExsXzLo%2BRVHhp0wbh2R2WnIjkeDOYyrInADqKI9R2HkJGBv4s%2BZVYhIeM%2FB2ocxRSJKYVtnHX9%2FBmsWhyIrF%2B2sX1T12M4CnpGAXSGjIQC99Q7KDqMMXIBXJXIUZsCmwjPffr4%2F0rfS0a9YOPF3HWLoRvVDFzKlICzpxiLZeFEiCIL%2BJ2ycOJ7S1KGuoKmy%2FdkDNQOHBpcc4i6b92kgX%2FXhfDg7F00BdwTJKBZGchJC88F36KkHWRKv3bEzassB6yXnGcl04ivYSWcxiu7LVHPF39%2B9sS%2BBnQyso2eBkjkbP2MJQutwYuejBvA7FHaCPPQfR4wyeDC2QRLXKE5voXn4F2Vco3doqON%2BNkYeiW5ZvLcMDwDiFr%2BPdZ8jyZIZQut4MwKfxZSKJ1PYf0Xn0%3D--7itFnUh01X5%2FoHNj--0d4V20RBRjbGOFzugzZgMg%3D%3D' \
+  'https://github.com/search/suggestions?query=keploy&saved_searches=%5B%5D'
+
+# Response Body: {"suggestions":[],"queryErrors":[],"failed":false}
+

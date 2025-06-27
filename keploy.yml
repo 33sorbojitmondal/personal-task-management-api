@@ -1,0 +1,47 @@
+path: "./"
+appName: "personal-task-management-api"
+appPort: 5000
+command: "npm start"
+normalise:
+  headerKeys:
+    - "Authorization"
+    - "Content-Type"
+    - "User-Agent"
+  queryParams:
+    - "page"
+    - "limit"
+    - "sort"
+  responseHeaders:
+    - "Content-Type"
+    - "Set-Cookie"
+    - "X-Powered-By"
+test:
+  path: "./tests/keploy"
+  delay: 2
+  filters:
+    - url: "/health"
+      method: "GET"
+    - url: "/api/v1/.*"
+      method: ".*"
+  globalNoise:
+    global:
+      headers:
+        - "Date"
+        - "X-Request-Id"
+        - "ETag"
+        - "Last-Modified"
+      body:
+        - "$.timestamp"
+        - "$.createdAt"
+        - "$.updatedAt"
+        - "$._id"
+        - "$.token"
+config:
+  generate: true
+  record: true
+  test: true
+  port: 0
+  bypass: "localhost:5000"
+  coverage: true
+  ignoreOrdering: false
+  enableTele: true 

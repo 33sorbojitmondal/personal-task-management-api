@@ -1,0 +1,1104 @@
+openapi: 3.0.3
+info:
+  title: Personal Task Management API
+  description: |
+    A comprehensive RESTful API for personal task management with advanced analytics and reporting capabilities.
+    
+    **API Fellowship Session 2 - Main Assignment**
+    
+    ## Features
+    - Complete CRUD operations for tasks, users, and categories
+    - Advanced filtering, search, and pagination
+    - Task categorization with color-coded categories
+    - User authentication with JWT tokens
+    - Real-time analytics and reporting
+    - Performance optimized with MongoDB aggregations
+    
+    ## Authentication
+    Most endpoints require JWT authentication. Include the token in the Authorization header:
+    ```
+    Authorization: Bearer <your-jwt-token>
+    ```
+  version: 1.0.0
+  contact:
+    name: API Fellowship Session 2
+    email: support@example.com
+  license:
+    name: MIT
+    url: https://opensource.org/licenses/MIT
+
+servers:
+  - url: http://localhost:5000
+    description: Development server
+  - url: https://api.taskmanagement.com
+    description: Production server
+
+paths:
+  /:
+    get:
+      summary: Welcome endpoint
+      description: Returns API information and available endpoints
+      tags:
+        - General
+      responses:
+        '200':
+          description: API welcome message
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: "🚀 Welcome to Personal Task Management API"
+                  version:
+                    type: string
+                    example: "1.0.0"
+                  author:
+                    type: string
+                    example: "API Fellowship Session 2"
+                  documentation:
+                    type: object
+                  quickStart:
+                    type: object
+
+  /health:
+    get:
+      summary: Health check
+      description: Returns API health status
+      tags:
+        - General
+      responses:
+        '200':
+          description: API health status
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: "OK"
+                  uptime:
+                    type: number
+                  memory:
+                    type: object
+                  database:
+                    type: object
+
+  /api/docs:
+    get:
+      summary: API documentation
+      description: Returns detailed API documentation
+      tags:
+        - General
+      responses:
+        '200':
+          description: API documentation
+          content:
+            application/json:
+              schema:
+                type: object
+
+  /api/v1/users/register:
+    post:
+      summary: Register new user
+      description: Create a new user account
+      tags:
+        - Users
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - name
+                - email
+                - password
+              properties:
+                name:
+                  type: string
+                  minLength: 2
+                  maxLength: 50
+                  example: "John Doe"
+                email:
+                  type: string
+                  format: email
+                  example: "john@example.com"
+                password:
+                  type: string
+                  minLength: 6
+                  example: "securePassword123"
+                role:
+                  type: string
+                  enum: [user, admin, manager]
+                  default: user
+                avatar:
+                  type: string
+                  format: uri
+                department:
+                  type: string
+                phoneNumber:
+                  type: string
+      responses:
+        '201':
+          description: User created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserResponse'
+        '400':
+          description: Validation error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '409':
+          description: Email already exists
+
+  /api/v1/users/login:
+    post:
+      summary: User login
+      description: Authenticate user and return JWT token
+      tags:
+        - Users
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - email
+                - password
+              properties:
+                email:
+                  type: string
+                  format: email
+                  example: "john@example.com"
+                password:
+                  type: string
+                  example: "securePassword123"
+      responses:
+        '200':
+          description: Login successful
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: "Login successful"
+                  token:
+                    type: string
+                    example: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."
+                  user:
+                    $ref: '#/components/schemas/User'
+        '400':
+          description: Invalid credentials
+        '401':
+          description: Authentication failed
+
+  /api/v1/users:
+    get:
+      summary: Get all users
+      description: Retrieve all users with filtering and pagination
+      tags:
+        - Users
+      security:
+        - bearerAuth: []
+      parameters:
+        - $ref: '#/components/parameters/PageParam'
+        - $ref: '#/components/parameters/LimitParam'
+        - $ref: '#/components/parameters/SearchParam'
+        - $ref: '#/components/parameters/SortByParam'
+        - $ref: '#/components/parameters/SortOrderParam'
+        - name: role
+          in: query
+          description: Filter by user role
+          schema:
+            type: string
+            enum: [user, admin, manager]
+        - name: isActive
+          in: query
+          description: Filter by active status
+          schema:
+            type: boolean
+      responses:
+        '200':
+          description: Users retrieved successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  users:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/User'
+                  pagination:
+                    $ref: '#/components/schemas/Pagination'
+        '401':
+          description: Unauthorized
+
+  /api/v1/users/{id}:
+    get:
+      summary: Get user by ID
+      description: Retrieve a specific user by ID
+      tags:
+        - Users
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: User ID
+          schema:
+            type: string
+            pattern: '^[0-9a-fA-F]{24}$'
+      responses:
+        '200':
+          description: User found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+        '404':
+          description: User not found
+        '401':
+          description: Unauthorized
+
+    put:
+      summary: Update user
+      description: Update user information
+      tags:
+        - Users
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: User ID
+          schema:
+            type: string
+            pattern: '^[0-9a-fA-F]{24}$'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  minLength: 2
+                  maxLength: 50
+                email:
+                  type: string
+                  format: email
+                avatar:
+                  type: string
+                  format: uri
+                department:
+                  type: string
+                phoneNumber:
+                  type: string
+      responses:
+        '200':
+          description: User updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+        '400':
+          description: Validation error
+        '404':
+          description: User not found
+        '401':
+          description: Unauthorized
+
+    delete:
+      summary: Delete user
+      description: Soft delete a user (sets isActive to false)
+      tags:
+        - Users
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: User ID
+          schema:
+            type: string
+            pattern: '^[0-9a-fA-F]{24}$'
+      responses:
+        '200':
+          description: User deleted successfully
+        '404':
+          description: User not found
+        '401':
+          description: Unauthorized
+
+  /api/v1/tasks:
+    get:
+      summary: Get all tasks
+      description: Retrieve all tasks with filtering, sorting, and pagination
+      tags:
+        - Tasks
+      security:
+        - bearerAuth: []
+      parameters:
+        - $ref: '#/components/parameters/PageParam'
+        - $ref: '#/components/parameters/LimitParam'
+        - $ref: '#/components/parameters/SearchParam'
+        - $ref: '#/components/parameters/SortByParam'
+        - $ref: '#/components/parameters/SortOrderParam'
+        - name: status
+          in: query
+          description: Filter by task status
+          schema:
+            type: string
+            enum: [pending, in-progress, completed, cancelled]
+        - name: priority
+          in: query
+          description: Filter by task priority
+          schema:
+            type: string
+            enum: [low, medium, high]
+        - name: category
+          in: query
+          description: Filter by category ID
+          schema:
+            type: string
+            pattern: '^[0-9a-fA-F]{24}$'
+        - name: assignedTo
+          in: query
+          description: Filter by assigned user ID
+          schema:
+            type: string
+            pattern: '^[0-9a-fA-F]{24}$'
+        - name: overdue
+          in: query
+          description: Filter overdue tasks
+          schema:
+            type: boolean
+      responses:
+        '200':
+          description: Tasks retrieved successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  tasks:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Task'
+                  pagination:
+                    $ref: '#/components/schemas/Pagination'
+        '401':
+          description: Unauthorized
+
+    post:
+      summary: Create new task
+      description: Create a new task
+      tags:
+        - Tasks
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - title
+                - assignedTo
+              properties:
+                title:
+                  type: string
+                  minLength: 3
+                  maxLength: 100
+                  example: "Complete API Documentation"
+                description:
+                  type: string
+                  maxLength: 500
+                  example: "Write comprehensive API documentation with examples"
+                priority:
+                  type: string
+                  enum: [low, medium, high]
+                  default: medium
+                status:
+                  type: string
+                  enum: [pending, in-progress, completed, cancelled]
+                  default: pending
+                dueDate:
+                  type: string
+                  format: date-time
+                  example: "2024-01-15T09:00:00.000Z"
+                estimatedHours:
+                  type: number
+                  minimum: 0.5
+                  maximum: 100
+                  example: 4
+                category:
+                  type: string
+                  pattern: '^[0-9a-fA-F]{24}$'
+                assignedTo:
+                  type: string
+                  pattern: '^[0-9a-fA-F]{24}$'
+                tags:
+                  type: array
+                  items:
+                    type: string
+                  maxItems: 10
+      responses:
+        '201':
+          description: Task created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Task'
+        '400':
+          description: Validation error
+        '401':
+          description: Unauthorized
+
+  /api/v1/tasks/{id}:
+    get:
+      summary: Get task by ID
+      description: Retrieve a specific task by ID
+      tags:
+        - Tasks
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: Task ID
+          schema:
+            type: string
+            pattern: '^[0-9a-fA-F]{24}$'
+      responses:
+        '200':
+          description: Task found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Task'
+        '404':
+          description: Task not found
+        '401':
+          description: Unauthorized
+
+    put:
+      summary: Update task
+      description: Update an existing task
+      tags:
+        - Tasks
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: Task ID
+          schema:
+            type: string
+            pattern: '^[0-9a-fA-F]{24}$'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                title:
+                  type: string
+                  minLength: 3
+                  maxLength: 100
+                description:
+                  type: string
+                  maxLength: 500
+                priority:
+                  type: string
+                  enum: [low, medium, high]
+                status:
+                  type: string
+                  enum: [pending, in-progress, completed, cancelled]
+                dueDate:
+                  type: string
+                  format: date-time
+                estimatedHours:
+                  type: number
+                  minimum: 0.5
+                  maximum: 100
+                category:
+                  type: string
+                  pattern: '^[0-9a-fA-F]{24}$'
+                assignedTo:
+                  type: string
+                  pattern: '^[0-9a-fA-F]{24}$'
+                tags:
+                  type: array
+                  items:
+                    type: string
+                  maxItems: 10
+      responses:
+        '200':
+          description: Task updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Task'
+        '400':
+          description: Validation error
+        '404':
+          description: Task not found
+        '401':
+          description: Unauthorized
+
+    delete:
+      summary: Delete task
+      description: Delete a task
+      tags:
+        - Tasks
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: Task ID
+          schema:
+            type: string
+            pattern: '^[0-9a-fA-F]{24}$'
+      responses:
+        '200':
+          description: Task deleted successfully
+        '404':
+          description: Task not found
+        '401':
+          description: Unauthorized
+
+  /api/v1/tasks/{id}/status:
+    patch:
+      summary: Update task status
+      description: Update only the status of a task
+      tags:
+        - Tasks
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: Task ID
+          schema:
+            type: string
+            pattern: '^[0-9a-fA-F]{24}$'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - status
+              properties:
+                status:
+                  type: string
+                  enum: [pending, in-progress, completed, cancelled]
+      responses:
+        '200':
+          description: Task status updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Task'
+        '400':
+          description: Validation error
+        '404':
+          description: Task not found
+        '401':
+          description: Unauthorized
+
+  /api/v1/categories:
+    get:
+      summary: Get all categories
+      description: Retrieve all categories
+      tags:
+        - Categories
+      security:
+        - bearerAuth: []
+      parameters:
+        - $ref: '#/components/parameters/PageParam'
+        - $ref: '#/components/parameters/LimitParam'
+        - $ref: '#/components/parameters/SearchParam'
+        - name: isActive
+          in: query
+          description: Filter by active status
+          schema:
+            type: boolean
+      responses:
+        '200':
+          description: Categories retrieved successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  categories:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Category'
+                  pagination:
+                    $ref: '#/components/schemas/Pagination'
+        '401':
+          description: Unauthorized
+
+    post:
+      summary: Create new category
+      description: Create a new task category
+      tags:
+        - Categories
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - name
+                - createdBy
+              properties:
+                name:
+                  type: string
+                  minLength: 1
+                  maxLength: 50
+                  example: "Work"
+                description:
+                  type: string
+                  maxLength: 200
+                  example: "Work-related tasks"
+                color:
+                  type: string
+                  pattern: '^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$'
+                  example: "#3498db"
+                icon:
+                  type: string
+                  minLength: 1
+                  maxLength: 30
+                  example: "briefcase"
+                createdBy:
+                  type: string
+                  pattern: '^[0-9a-fA-F]{24}$'
+      responses:
+        '201':
+          description: Category created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Category'
+        '400':
+          description: Validation error
+        '401':
+          description: Unauthorized
+
+  /api/v1/categories/{id}:
+    get:
+      summary: Get category by ID
+      description: Retrieve a specific category by ID
+      tags:
+        - Categories
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: Category ID
+          schema:
+            type: string
+            pattern: '^[0-9a-fA-F]{24}$'
+      responses:
+        '200':
+          description: Category found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Category'
+        '404':
+          description: Category not found
+        '401':
+          description: Unauthorized
+
+    put:
+      summary: Update category
+      description: Update an existing category
+      tags:
+        - Categories
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: Category ID
+          schema:
+            type: string
+            pattern: '^[0-9a-fA-F]{24}$'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  minLength: 1
+                  maxLength: 50
+                description:
+                  type: string
+                  maxLength: 200
+                color:
+                  type: string
+                  pattern: '^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$'
+                icon:
+                  type: string
+                  minLength: 1
+                  maxLength: 30
+      responses:
+        '200':
+          description: Category updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Category'
+        '400':
+          description: Validation error
+        '404':
+          description: Category not found
+        '401':
+          description: Unauthorized
+
+    delete:
+      summary: Delete category
+      description: Delete a category
+      tags:
+        - Categories
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: Category ID
+          schema:
+            type: string
+            pattern: '^[0-9a-fA-F]{24}$'
+      responses:
+        '200':
+          description: Category deleted successfully
+        '404':
+          description: Category not found
+        '401':
+          description: Unauthorized
+
+  /api/v1/analytics/dashboard:
+    get:
+      summary: Get dashboard analytics
+      description: Retrieve comprehensive dashboard analytics
+      tags:
+        - Analytics
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: timeframe
+          in: query
+          description: Analytics timeframe
+          schema:
+            type: string
+            enum: [7d, 30d, 90d, 1y]
+            default: 30d
+        - name: userId
+          in: query
+          description: Filter analytics for specific user
+          schema:
+            type: string
+            pattern: '^[0-9a-fA-F]{24}$'
+      responses:
+        '200':
+          description: Dashboard analytics retrieved successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  overview:
+                    type: object
+                    properties:
+                      totalTasks:
+                        type: integer
+                      completedTasks:
+                        type: integer
+                      pendingTasks:
+                        type: integer
+                      overdueRate:
+                        type: number
+                  trends:
+                    type: object
+                  performance:
+                    type: object
+        '401':
+          description: Unauthorized
+
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+
+  parameters:
+    PageParam:
+      name: page
+      in: query
+      description: Page number for pagination
+      schema:
+        type: integer
+        minimum: 1
+        default: 1
+    
+    LimitParam:
+      name: limit
+      in: query
+      description: Number of items per page
+      schema:
+        type: integer
+        minimum: 1
+        maximum: 100
+        default: 10
+    
+    SearchParam:
+      name: search
+      in: query
+      description: Search term for filtering
+      schema:
+        type: string
+    
+    SortByParam:
+      name: sortBy
+      in: query
+      description: Field to sort by
+      schema:
+        type: string
+        default: createdAt
+    
+    SortOrderParam:
+      name: sortOrder
+      in: query
+      description: Sort order
+      schema:
+        type: string
+        enum: [asc, desc]
+        default: desc
+
+  schemas:
+    User:
+      type: object
+      properties:
+        _id:
+          type: string
+          pattern: '^[0-9a-fA-F]{24}$'
+          example: "507f1f77bcf86cd799439011"
+        name:
+          type: string
+          example: "John Doe"
+        email:
+          type: string
+          format: email
+          example: "john@example.com"
+        role:
+          type: string
+          enum: [user, admin, manager]
+          example: "user"
+        avatar:
+          type: string
+          format: uri
+          example: "https://example.com/avatar.jpg"
+        department:
+          type: string
+          example: "Engineering"
+        phoneNumber:
+          type: string
+          example: "+1234567890"
+        isActive:
+          type: boolean
+          example: true
+        lastLogin:
+          type: string
+          format: date-time
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+
+    UserResponse:
+      type: object
+      properties:
+        message:
+          type: string
+          example: "User created successfully"
+        user:
+          $ref: '#/components/schemas/User'
+
+    Task:
+      type: object
+      properties:
+        _id:
+          type: string
+          pattern: '^[0-9a-fA-F]{24}$'
+          example: "507f1f77bcf86cd799439011"
+        title:
+          type: string
+          example: "Complete API Documentation"
+        description:
+          type: string
+          example: "Write comprehensive API documentation with examples"
+        priority:
+          type: string
+          enum: [low, medium, high]
+          example: "high"
+        status:
+          type: string
+          enum: [pending, in-progress, completed, cancelled]
+          example: "pending"
+        dueDate:
+          type: string
+          format: date-time
+          example: "2024-01-15T09:00:00.000Z"
+        estimatedHours:
+          type: number
+          example: 4
+        actualHours:
+          type: number
+          example: 3.5
+        category:
+          $ref: '#/components/schemas/Category'
+        assignedTo:
+          $ref: '#/components/schemas/User'
+        tags:
+          type: array
+          items:
+            type: string
+          example: ["documentation", "api"]
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+
+    Category:
+      type: object
+      properties:
+        _id:
+          type: string
+          pattern: '^[0-9a-fA-F]{24}$'
+          example: "507f1f77bcf86cd799439011"
+        name:
+          type: string
+          example: "Work"
+        description:
+          type: string
+          example: "Work-related tasks"
+        color:
+          type: string
+          pattern: '^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$'
+          example: "#3498db"
+        icon:
+          type: string
+          example: "briefcase"
+        isActive:
+          type: boolean
+          example: true
+        taskCount:
+          type: integer
+          example: 25
+        createdBy:
+          $ref: '#/components/schemas/User'
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+
+    Pagination:
+      type: object
+      properties:
+        page:
+          type: integer
+          example: 1
+        limit:
+          type: integer
+          example: 10
+        totalPages:
+          type: integer
+          example: 5
+        totalItems:
+          type: integer
+          example: 47
+        hasNext:
+          type: boolean
+          example: true
+        hasPrev:
+          type: boolean
+          example: false
+
+    Error:
+      type: object
+      properties:
+        error:
+          type: string
+          example: "Validation failed"
+        message:
+          type: string
+          example: "The provided data is invalid"
+        details:
+          type: array
+          items:
+            type: object
+            properties:
+              field:
+                type: string
+              message:
+                type: string
+        timestamp:
+          type: string
+          format: date-time
+
+tags:
+  - name: General
+    description: General API endpoints (health, docs, welcome)
+  - name: Users
+    description: User management and authentication
+  - name: Tasks
+    description: Task management operations
+  - name: Categories
+    description: Task categorization system
+  - name: Analytics
+    description: Reporting and analytics 
